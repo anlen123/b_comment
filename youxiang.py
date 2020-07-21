@@ -3,7 +3,7 @@ def qq_youjian(fajianren,shoujianren,zhuti,txt):
     from email.mime.text import MIMEText
     msg_from=fajianren                                 #发送方邮箱
     # passwd='eyfdfamsmdsldchg'                                   #填入发送方邮箱的授权码
-    passwd='fscarlaxbdsxbgae'                         #填入发送方邮箱的授权码
+    passwd=''                         #填入发送方邮箱的授权码
     msg_to=shoujianren                                       #收件人邮箱
 
     subject=zhuti                                   #主题
