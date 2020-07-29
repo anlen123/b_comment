@@ -16,57 +16,26 @@ from fake_useragent import UserAgent
 
 ua = UserAgent()
 have = []
+
+# os.system('bash Blog.sh')
+
 # 你的b站cookies 不知道怎么获取自己百度
 
-cook = "sid=iltqdyjb; DedeUserID=32482364; DedeUserID__ckMd5=ce93b510ef5be598; SESSDATA=8a59ae8e%2C1604628849%2Cddb89*51; bili_jct=3fda1881cb2b6d0fae6908d3cb614ad0; CURRENT_FNVAL=16; rpdid=|(u|kJJYJ~lY0J'ul)m|~YmJ|; LIVE_BUVID=AUTO8615892797682858"
-uid = re.findall("DedeUserID=(.*?);", cook)[0]
-csrf = re.findall("bili_jct=(.*?);", cook)[0]
+f = open("cook")
+cooke = f.read()
+f.close()
+sid = re.findall('sid\t(.*)\n', cooke)[0]
+uid = re.findall("DedeUserID\t(.*)\n", cooke)[0]
+DedeUserID__ckMd5 = re.findall("DedeUserID__ckMd5\t(.*?)\n", cooke)[0]
+SESSDATA = re.findall("SESSDATA\t(.*?)\n", cooke)[0]
+csrf = re.findall("bili_jct\t(.*?)$", cooke)[0]
 
-msg_dist = {
-    "101037051": "土逼蛋蛋,我来了,",
-    "430758745": "jiji我来了 [doge]",
-    "81824112": "策导牛逼啊",
-    "50212909": "我来了,",
-    "11511322": "前来学习",
-    "1393437": "八点??",
-    "179058253": "小鸟我来了,",
-    "1935882": "张坦克我来了,",
-    "40433405": "前来学习[doge]",
-    "26139491": "胖胖真好看,",
-    "437316738": "枯燥[doge]",
-    "390461123": "可有蒜,[doge]",
-    "20165629": "小团团,[热词系列_知识增加]",
-    "9265186": "乔哥,[热词系列_知识增加]",
-    "686127": "籽岷大大,[tv_doge]",
-    "1962633": "羡慕啊,",
-    "5374954": "羡慕啊,",
-    "3892132": "羡慕啊,",
-    "1928235": "[tv_doge]",
-    "193482959": "小孤影,",
-    "405017096": "前来学习",
-    "1285446":"我康康,银子今天总结了几点,[doge]",
-    "2170934":"duang主,",
-    "480366389":"希望早日没素材",
-    "110904544":"家有小西瓜,[doge]",
-    "108569350":"梦泪,永远滴神[doge]",
-    "13118294":"木偶大大,[doge]",
-    "250858633":"我看今天谁受迫害了,",
-    "27669924":"外行员(x) 尾田(v)[doge]",
-    "19428259":"大大大叔,",
-    "295626593":"mo老ye",
-    "94281836":"你,你,你,好骚啊,[doge]",
-    "808171":"羡慕啊,",
-    "16539048":"羡慕啊,",
-    "14110780":"秃凉你来了,",
-    "517327498":"罗老师课堂开始了,",
-    "4029133":"看着想笑,",
-    "52250":"羡慕啊,",
-    "295723":"羡慕啊,",
-    "777536":"雷电法王,lex",
-    "122879":"厂长来了,",
-}
-
-
+cook = f"sid={sid}; DedeUserID={uid}; DedeUserID__ckMd5={DedeUserID__ckMd5}; SESSDATA={SESSDATA}; bili_jct={csrf};"
+print(cook)
+f = open("msg_dist.json")
+msg_dist = f.read()
+f.close()
+msg_dist = eval(msg_dist)
 def BV_AV(BV):
     table = 'fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF'
     tr = {}
