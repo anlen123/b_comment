@@ -22,4 +22,4 @@ def qq_youjian(fajianren,shoujianren,zhuti,txt):
     finally:
         s.quit()
         
-qq_youjian("1761512493@qq.com","1761512493@qq.com","代码出错了","评论代码出错!赶快去看看吧!!")
+qq_youjian("@qq.com","@qq.com","代码出错了","评论代码出错!赶快去看看吧!!")

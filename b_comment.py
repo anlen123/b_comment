@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# !/usr/bin/python3
 '''
 B站评论监控
 @File    :   test2.py
@@ -12,12 +11,9 @@ import re
 import time
 import os
 import random
-from fake_useragent import UserAgent
-
-ua = UserAgent()
 have = []
 
-# os.system('bash Blog.sh')
+os.system('bash Blog.sh')
 
 # 你的b站cookies 不知道怎么获取自己百度
 
@@ -75,7 +71,7 @@ def _Send(BV, msg):
         'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-site',
-        'user-agent': ua.random,
+        'user-agent': "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
     }
 
     session = requests.Session()
@@ -89,20 +85,10 @@ def _Send(BV, msg):
 
 def get_BV_list():
     headers = {
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'accept-encoding': 'gzip, deflate, br',
-        'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
-        'cache-control': 'max-age=0',
         'cookie': f"{cook}",
-        'sec-fetch-dest': 'document',
-        'sec-fetch-mode': 'navigate',
-        'sec-fetch-site': 'none',
-        'sec-fetch-user': '?1',
-        'upgrade-insecure-requests': '1',
-        'user-agent': ua.random,
+        'user-agent': "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
     }
     a = requests.get(
-        # url="https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_new?uid=32482364&type_list=268435455",
         url=f"https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_new?uid={uid}&type_list=8",
         headers=headers).json()
     # return re.findall('"bvid":"(.*?)"', a)[:5]
